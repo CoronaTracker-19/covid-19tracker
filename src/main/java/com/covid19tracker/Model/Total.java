@@ -1,5 +1,8 @@
 package com.covid19tracker.Model;
 
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Embeddable;
@@ -8,15 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Total {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long updates;
 	private long cases;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime localDateTime;
 	private long todayCases;
 	private long deaths;
 	private long todayDeaths;
@@ -29,10 +36,13 @@ public class Total {
 	public Total() {
 	}
 	
-	public Total(int id, long cases, long todayCases, long deaths, long todayDeaths, long recovered,
-			long todayRecovered, long active) {
-		this.id = id;
+
+	public Total(Long updates, long cases, LocalDateTime localDateTime, long todayCases, long deaths, long todayDeaths,
+			long recovered, long todayRecovered, long active) {
+		super();
+		this.updates = updates;
 		this.cases = cases;
+		this.localDateTime = localDateTime;
 		this.todayCases = todayCases;
 		this.deaths = deaths;
 		this.todayDeaths = todayDeaths;
@@ -40,12 +50,18 @@ public class Total {
 		this.todayRecovered = todayRecovered;
 		this.active = active;
 	}
-	public int getId() {
-		return id;
+
+
+
+
+	public Long getUpdates() {
+		return updates;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setUpdates(Long updates) {
+		this.updates = updates;
 	}
+
 	public long getCases() {
 		return cases;
 	}
@@ -88,12 +104,27 @@ public class Total {
 	public void setActive(long active) {
 		this.active = active;
 	}
+	
+	
+	
+	
+	public LocalDateTime getLocalDateTime() {
+		return localDateTime;
+	}
+
+
+	public void setLocalDateTime(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Total [id=" + id + ", cases=" + cases + ", todayCases=" + todayCases + ", deaths=" + deaths
-				+ ", todayDeaths=" + todayDeaths + ", recovered=" + recovered + ", todayRecovered=" + todayRecovered
-				+ ", active=" + active + "]";
+		return "Total [updates=" + updates + ", cases=" + cases + ", localDateTime=" + localDateTime + ", todayCases="
+				+ todayCases + ", deaths=" + deaths + ", todayDeaths=" + todayDeaths + ", recovered=" + recovered
+				+ ", todayRecovered=" + todayRecovered + ", active=" + active + "]";
 	}
+
 	
 	
 }

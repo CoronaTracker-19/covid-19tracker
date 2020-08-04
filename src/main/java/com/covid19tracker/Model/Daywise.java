@@ -1,54 +1,47 @@
 package com.covid19tracker.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Embedded;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Daywise {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private String country;
-	private String dates;
+
+		
+	@EmbeddedId
+	private DaywiseId daywiseid ;
+	
 	private int cases;
 	private int deaths;
 	private int recovered;
+	
+	@Column(name="total_cases_begining")
+	private int totalCasesBegining;
+	
+	@Column(name="total_recovered_begining")
+	private int totalRecoveredBegining;
+	
+	@Column(name="total_deaths_begining")
+	private int totalDeathsBegining;
+	
+	
 	public Daywise() {
 	}
-	public Daywise(int id, String country, String dates, int cases, int deaths, int recovered) {
-		this.id = id;
-		this.country = country;
-		this.dates = dates;
+	
+
+	public Daywise(DaywiseId daywiseid, int cases, int deaths, int recovered, int totalCasesBegining,
+			int totalRecoveredBegining, int totalDeathsBegining) {
+		super();
+		this.daywiseid = daywiseid;
 		this.cases = cases;
 		this.deaths = deaths;
 		this.recovered = recovered;
+		this.totalCasesBegining = totalCasesBegining;
+		this.totalRecoveredBegining = totalRecoveredBegining;
+		this.totalDeathsBegining = totalDeathsBegining;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getDates() {
-		return dates;
-	}
-	public void setDates(String dates) {
-		this.dates = dates;
-	}
+
+
 	public int getCases() {
 		return cases;
 	}
@@ -66,7 +59,47 @@ public class Daywise {
 	}
 	public void setRecovered(int recovered) {
 		this.recovered = recovered;
-	}	
+	}
+
+	public DaywiseId getDaywiseid() {
+		return daywiseid;
+	}
+
+
+	public void setDaywiseid(DaywiseId daywiseid) {
+		this.daywiseid = daywiseid;
+	}
+
+
+	public int getTotalCasesBegining() {
+		return totalCasesBegining;
+	}
+
+
+	public void setTotalCasesBegining(int totalCasesBegining) {
+		this.totalCasesBegining = totalCasesBegining;
+	}
+
+
+	public int getTotalRecoveredBegining() {
+		return totalRecoveredBegining;
+	}
+
+
+	public void setTotalRecoveredBegining(int totalRecoveredBegining) {
+		this.totalRecoveredBegining = totalRecoveredBegining;
+	}
+
+
+	public int getTotalDeathsBegining() {
+		return totalDeathsBegining;
+	}
+
+
+	public void setTotalDeathsBegining(int totalDeathsBegining) {
+		this.totalDeathsBegining = totalDeathsBegining;
+	}
+
 		
 	
 }

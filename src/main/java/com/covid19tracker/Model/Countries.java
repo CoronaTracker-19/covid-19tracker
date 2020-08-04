@@ -18,16 +18,18 @@ public class Countries {
 	private long cases;
 	@Column(name="today_cases")
 	private long todayCases;
-	@Column(name="deaths")
-	private long deaths;
 	@Column(name="today_deaths")
 	private long todayDeaths;
-	@Column(name="recovered")
-	private long recovered;
 	@Column(name="today_recovered")
 	private long todayRecovered;
 	@Column(name="active")
 	private long active;
+	@Column(name="deaths")
+	private long deaths;
+	@Column(name="recovered")
+	private long recovered;
+	
+	
 	
 	
 	public Countries() {
@@ -35,6 +37,7 @@ public class Countries {
 	
 	public Countries(String country, long cases, long todayCases, long deaths, long todayDeaths, long recovered,
 			long todayRecovered, long active) {
+//		this.id = id;
 		this.country = country;
 		this.cases = cases;
 		this.todayCases = todayCases;
@@ -45,6 +48,18 @@ public class Countries {
 		this.active = active;
 	}
 	
+	
+	
+
+
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
 	public String getCountry() {
 		return country;
 	}

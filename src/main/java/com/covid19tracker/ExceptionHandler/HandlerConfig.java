@@ -83,17 +83,7 @@ public class HandlerConfig {
 		error.setTimestamp(System.currentTimeMillis());
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_ACCEPTABLE);
 	}
-//	@ExceptionHandler
-//	public ResponseEntity<ErrorResponse> handleException(Exception e)
-//	{
-//		ErrorResponse error=new ErrorResponse();
-//		
-//		error.setStatus(HttpStatus.BAD_REQUEST.value());
-//		error.setMessage(e.getMessage());
-//		error.setDetails("Try again");
-//		error.setTimestamp(System.currentTimeMillis());
-//		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
-//	}
+
 	@ExceptionHandler
 	public ResponseEntity<ErrorResponse> handleInvalidOrderException(InvalidOrderException e)
 	{
@@ -149,4 +139,27 @@ public class HandlerConfig {
 		error.setTimestamp(System.currentTimeMillis());
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_ACCEPTABLE);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorResponse> handleIndexOutOfBoundsException(IndexOutOfBoundsException e)
+	{
+		ErrorResponse error=new ErrorResponse();
+		
+		error.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
+		error.setMessage("Invalid data");
+		error.setDetails("Put parameters that has corresponding data present");
+		error.setTimestamp(System.currentTimeMillis());
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
+	}
+//	@ExceptionHandler
+//	public ResponseEntity<ErrorResponse> handleException(Exception e)
+//	{
+//		ErrorResponse error=new ErrorResponse();
+//		
+//		error.setStatus(HttpStatus.BAD_REQUEST.value());
+//		error.setMessage("Something went wrong");
+//		error.setDetails("Try again");
+//		error.setTimestamp(System.currentTimeMillis());
+//		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
+//	}
 }

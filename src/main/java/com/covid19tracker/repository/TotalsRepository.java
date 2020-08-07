@@ -16,4 +16,6 @@ public interface TotalsRepository extends JpaRepository<Total, Long> {
 	List<Total> findFirstByOrderByLocalDateTimeDesc();
 	
 	
+	
+	
 }
